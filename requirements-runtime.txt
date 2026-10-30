@@ -1,0 +1,4 @@
+# Pinned Linux CPython 3.12 x86_64 wheel, hash also recorded in uv.lock.
+--index-url https://pypi.tuna.tsinghua.edu.cn/simple
+regex==2026.9.29 \
+    --hash=sha256:39ab5894d971f9ac68baa6eca5c50387db579cfcacf36ae8df3feceb1815e6d0

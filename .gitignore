@@ -1,0 +1,40 @@
+# Local account inputs, uploaded persona originals, credentials and runtime data
+/config/*.local.json
+/SakuraMitsuha - Astrbot.txt
+/personas/review/
+.env
+.env.*
+!.env.example
+/.venv/
+/.runtime/
+/runtime/
+/.prepare-*/
+/reports/*.local.*
+/work/
+/data/
+/logs/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local review evidence can contain account IDs, transcripts and screenshots.
+/reports/
+/output/
+/tmp/
+/openspec/
+/.agents/
+/.ruff_cache/
+/docs/local-history/
+*.log
+*.sqlite*
+*.db
+*.tsbuildinfo
+node_modules/
+dist/
+
+# Machine-specific historical operating notes stay local.
+/*.md
+!/README.md
+!/THIRD_PARTY.md
+/console-ui/REFERENCE.md
+/plugins/astrbot_plugin_roleplay_gateway/STORAGE-EVIDENCE.md

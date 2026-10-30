@@ -1,0 +1,6 @@
+{
+  "model_root": "D:/Models/IndexTTS2",
+  "reference_audio": "examples/reference.wav",
+  "text": "你好，这是一条语音测试。",
+  "timeout_seconds": 900
+}

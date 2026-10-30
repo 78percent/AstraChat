@@ -1,0 +1,7 @@
+{
+  "target_group_label": "test",
+  "native_trial_authorized": false,
+  "upstream_commit": "a81c495770b397646ba0661118927c83589c41fc",
+  "expected_self": null,
+  "allowed_room": null
+}

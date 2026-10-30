@@ -1,0 +1,335 @@
+{
+  "console_profile": {
+    "description": "控制台聊天 API 方案",
+    "type": "string",
+    "default": "deepseek",
+    "options": ["deepseek", "kouri"],
+    "hint": "请在个性化配置中测试并切换方案。"
+  },
+  "console_profiles": {
+    "description": "两套方案的独立模型",
+    "type": "dict",
+    "default": {},
+    "hint": "由控制台维护，不含 API Key。"
+  },
+  "console_model": {
+    "description": "控制台选择的会话模型",
+    "type": "string",
+    "default": "",
+    "hint": "当前活动方案的会话模型；通过桌面个性化配置切换。"
+  },
+  "console_search_model": {
+    "description": "搜索模型（待接入）",
+    "type": "string",
+    "default": "",
+    "hint": "仅保存配置，现有联网搜索服务不变。"
+  },
+  "console_image_model": {
+    "description": "生图模型（待接入）",
+    "type": "string",
+    "default": "",
+    "hint": "仅保存配置，暂不调用。"
+  },
+  "console_context_limit": {
+    "description": "模型最近对话轮数",
+    "type": "int",
+    "default": 12,
+    "hint": "控制台支持 1–100 轮，实际输入仍受 Token 预算约束。"
+  },
+  "native_enabled": {
+    "description": "启用微信群回复",
+    "type": "bool",
+    "default": false,
+    "hint": "保存后，在启动窗口点击“重新连接”恢复微信监听。"
+  },
+  "native_wake_names": {
+    "description": "微信群唤醒名字",
+    "type": "list",
+    "default": [
+      "三叶",
+      "佐仓三叶"
+    ]
+  },
+  "native_wake_regex": {
+    "description": "微信群唤醒正则",
+    "type": "list",
+    "default": []
+  },
+  "native_reply_probability": {
+    "description": "微信群回复概率",
+    "type": "float",
+    "default": 1.0,
+    "hint": "0 至 1；1 表示不随机跳过。仅在启用发言策略时生效。"
+  },
+  "online_lookup": {
+    "description": "联网查询",
+    "type": "object",
+    "items": {
+      "enabled": {
+        "description": "启用联网查询",
+        "type": "bool",
+        "default": false
+      },
+      "timeout_seconds": {
+        "description": "检索超时秒数",
+        "type": "float",
+        "default": 6.0
+      },
+      "max_sources": {
+        "description": "最多来源数",
+        "type": "int",
+        "default": 3
+      }
+    }
+  },
+  "reply_pacing": {
+    "description": "角色回复节奏",
+    "type": "object",
+    "hint": "这些节奏参数同时用于 QQ、ClawBot 私聊和微信群。",
+    "items": {
+      "enabled": {
+        "description": "启用发言策略",
+        "type": "bool",
+        "default": false
+      },
+      "first_delay_min": {
+        "description": "首段最早秒数",
+        "type": "float",
+        "default": 5.0
+      },
+      "first_delay_max": {
+        "description": "首段择时上界",
+        "type": "float",
+        "default": 10.0
+      },
+      "first_delay_mean": {
+        "description": "首段正态均值",
+        "type": "float",
+        "default": 7.5
+      },
+      "first_delay_std": {
+        "description": "首段正态标准差",
+        "type": "float",
+        "default": 1.25
+      },
+      "interval_min": {
+        "description": "段间最短秒数",
+        "type": "float",
+        "default": 3.0
+      },
+      "interval_max": {
+        "description": "段间最长秒数",
+        "type": "float",
+        "default": 5.0
+      },
+      "interval_mean": {
+        "description": "段间正态均值",
+        "type": "float",
+        "default": 4.0
+      },
+      "interval_std": {
+        "description": "段间正态标准差",
+        "type": "float",
+        "default": 0.5
+      },
+      "max_bubbles": {
+        "description": "每轮最多气泡",
+        "type": "int",
+        "default": 4
+      },
+      "max_characters": {
+        "description": "每轮最多正文字符",
+        "type": "int",
+        "default": 125
+      },
+      "cooldown_seconds": {
+        "description": "同会话准入冷却秒数",
+        "type": "float",
+        "default": 15.0
+      },
+      "window_seconds": {
+        "description": "滚动窗口秒数",
+        "type": "float",
+        "default": 60.0
+      },
+      "max_rounds": {
+        "description": "窗口内最多轮数",
+        "type": "int",
+        "default": 3
+      },
+      "probability": {
+        "description": "QQ / ClawBot 回复概率",
+        "type": "float",
+        "default": 0.6
+      }
+    }
+  },
+  "native_admin_ids": {
+    "description": "微信群记忆管理员",
+    "type": "list",
+    "default": []
+  },
+  "send_timeout_seconds": {
+    "description": "等待发送回执的秒数",
+    "type": "float",
+    "default": 8.0,
+    "hint": "0.1 至 30 秒。超时记为 UNKNOWN，不自动重发。修改后重新加载插件。"
+  },
+  "native_self_id": {
+    "description": "已绑定微信账号 ID",
+    "type": "string",
+    "default": "",
+    "hint": "更换账号需同时更新本机桥接绑定。"
+  },
+  "native_allowed_group_ids": {
+    "description": "已绑定微信群 ID",
+    "type": "list",
+    "default": [],
+    "hint": "当前只支持一个群；更换群需同时更新本机桥接绑定。"
+  },
+  "native_platform_id": {
+    "description": "微信群入口 ID",
+    "type": "string",
+    "default": "wechat-native-sakura",
+    "readonly": true,
+    "hint": "本插件内部入口，不是 AstrBot 机器人列表中的实例。"
+  },
+  "native_bridge_token": {
+    "description": "本机桥接密钥",
+    "type": "string",
+    "default": "",
+    "secret": true,
+    "hint": "修改时需同步本机桥接配置。"
+  },
+  "mode": {
+    "description": "回复模式",
+    "type": "string",
+    "default": "neutral_receipt",
+    "options": [
+      "neutral_receipt",
+      "neutral_stream",
+      "roleplay_stream"
+    ],
+    "hint": "微信群通道使用 roleplay_stream。"
+  },
+  "provider_id": {
+    "description": "已绑定回复模型",
+    "type": "string",
+    "default": "deepseek-flash-official",
+    "options": [
+      "deepseek-flash-official"
+    ],
+    "readonly": true,
+    "hint": "当前通道固定使用 DeepSeek 官方 deepseek-flash。"
+  },
+  "persona_name": {
+    "description": "已导入角色名",
+    "type": "string",
+    "default": "",
+    "readonly": true,
+    "hint": "人设内容由项目的 configure_persona.py 导入；不读取 AstrBot 人设页面。"
+  },
+  "persona_id": {
+    "description": "已导入角色 ID",
+    "type": "string",
+    "default": "",
+    "readonly": true
+  },
+  "persona_filename": {
+    "description": "已导入角色文件",
+    "type": "string",
+    "default": "",
+    "readonly": true
+  },
+  "persona_sha256": {
+    "description": "角色文件校验值",
+    "type": "string",
+    "default": "",
+    "readonly": true
+  },
+  "enabled": {
+    "description": "启用 QQ 回复",
+    "type": "bool",
+    "default": false,
+    "hint": "仅响应指定私聊和群。"
+  },
+  "platform_id": {
+    "description": "QQ 平台实例 ID",
+    "type": "string",
+    "default": "",
+    "hint": "填写机器人配置中的 ID，例如 qq-sakura；不要填写适配器类型。"
+  },
+  "bot_self_id": {
+    "description": "机器人登录 QQ 号",
+    "type": "string",
+    "default": ""
+  },
+  "admin_private_ids": {
+    "description": "允许私聊的 QQ 号",
+    "type": "list",
+    "default": [],
+    "hint": "空列表拒绝所有私聊。每项为字符串 QQ 号。"
+  },
+  "memory_admin_ids": {
+    "description": "记忆管理员 QQ 号",
+    "type": "list",
+    "default": [],
+    "hint": "管理群记忆及指定会话；私聊白名单不自动授予此权限。修改后重新加载插件。"
+  },
+  "allowed_group_ids": {
+    "description": "允许回复的 QQ 群号",
+    "type": "list",
+    "default": [],
+    "hint": "空列表拒绝所有群。只接受 @机器人、名字或正则命中的消息。"
+  },
+  "wake_names": {
+    "description": "QQ 群唤醒名字或别名",
+    "type": "list",
+    "default": [],
+    "hint": "任意位置匹配；不是人设内容。修改后重新加载插件。"
+  },
+  "wake_regex": {
+    "description": "QQ 群额外唤醒正则",
+    "type": "list",
+    "default": [],
+    "hint": "使用 regex 库，每条最多 5 ms、每次总计 20 ms；超时规则本次加载期间停用。修改后重新加载插件。"
+  },
+  "wechat_enabled": {
+    "description": "启用 ClawBot 微信私聊",
+    "type": "bool",
+    "default": false,
+    "hint": "这是独立的扫码私聊通道；桌面微信群机器人使用上方“启用微信群回复”。"
+  },
+  "wechat_platform_id": {
+    "description": "ClawBot 私聊实例 ID",
+    "type": "string",
+    "default": "wechat-sakura"
+  },
+  "wechat_allowed_private_ids": {
+    "description": "ClawBot 私聊白名单",
+    "type": "list",
+    "default": [],
+    "hint": "使用 ClawBot 事件中的用户 ID。空列表拒绝所有私聊。"
+  },
+  "wechat_admin_ids": {
+    "description": "ClawBot 私聊记忆管理员",
+    "type": "list",
+    "default": [],
+    "hint": "只管理该私聊通道的记忆。"
+  },
+  "native_allowed_private_ids": {
+    "description": "原生微信允许的私聊联系人 ID（最多一个）",
+    "type": "list",
+    "default": []
+  },
+  "native_voice_enabled": {
+    "description": "原生微信本地语音对话",
+    "type": "bool",
+    "default": false
+  },
+  "native_group_voice_ai_wake": {
+    "description": "群语音由 AI 判断是否在对机器人说话",
+    "type": "bool",
+    "default": false
+  }
+}

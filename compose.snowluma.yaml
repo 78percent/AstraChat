@@ -1,0 +1,52 @@
+name: astrbot-roleplay-snowluma
+
+services:
+  snowluma:
+    image: motricseven7/snowluma:v2.2.0@sha256:34b4ec03738a698231cbad39c5650747330f5a96d953494fb6c12e1273974c0b
+    platform: linux/amd64
+    restart: unless-stopped
+    shm_size: 1gb
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp=unconfined
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 1048576
+    env_file:
+      - ./runtime/snowluma.env.local
+    environment:
+      TZ: Asia/Shanghai
+      SNOWLUMA_UID: "1000"
+      SNOWLUMA_GID: "1000"
+      SNOWLUMA_WEBUI_HOST: "0.0.0.0"
+      SNOWLUMA_WEBUI_PORT: "5099"
+      SNOWLUMA_LOG_LEVEL: info
+      SNOWLUMA_SCREEN: "1920x1080x24"
+      SNOWLUMA_HOOK_AUTOLOAD: "1"
+      SNOWLUMA_QQ_FLAGS: "--disable-gpu --disable-software-rasterizer --disable-gpu-compositing"
+      SNOWLUMA_TELEMETRY: "0"
+    ports:
+      - "127.0.0.1:5099:5099"
+      - "127.0.0.1:6081:6081"
+    volumes:
+      - ./runtime/snowluma/data:/app/data
+      - snowluma-qq-config:/app/.config
+      - snowluma-qq-data:/app/.local/share
+    networks:
+      - existing-bot
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  snowluma-qq-config:
+  snowluma-qq-data:
+
+networks:
+  existing-bot:
+    external: true
+    name: astrbot-roleplay_bot

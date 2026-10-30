@@ -1,0 +1,7 @@
+{
+  "enabled": false,
+  "tts_model_root": "D:/Models/IndexTTS2",
+  "reference_audio": "D:/Models/IndexTTS2/examples/reference.wav",
+  "asr_python": "D:/Models/ASR/runtime/python.exe",
+  "asr_model_root": "D:/Models/ASR/models"
+}

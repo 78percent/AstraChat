@@ -1,0 +1,2 @@
+# Windows-only isolated desktop probe; never install in the AstrBot container.
+wxauto4==41.1.7

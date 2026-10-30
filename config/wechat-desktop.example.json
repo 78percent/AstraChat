@@ -1,0 +1,7 @@
+{
+  "target_group": "test",
+  "client_executable": "",
+  "account_confirmed": false,
+  "unique_group_confirmed": false,
+  "interactive_desktop_confirmed": false
+}

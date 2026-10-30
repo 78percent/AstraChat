@@ -1,0 +1,5 @@
+name: astrbot_plugin_roleplay_gateway
+display_name: QQ 与微信角色回复及隔离记忆
+desc: QQ、微信机器人私聊与指定真实微信群的角色回复、隔离记忆及有来源的资料查询。
+version: v0.8.0
+author: Local

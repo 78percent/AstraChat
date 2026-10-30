@@ -1,0 +1,18 @@
+[project]
+name = "astrbot-roleplay-local"
+version = "0.1.0"
+description = "AstrBot 角色扮演项目的本地部署与接入工具"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "regex==2026.9.29",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff.lint]
+select = ["F401", "F811", "F821", "F841"]
+
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true

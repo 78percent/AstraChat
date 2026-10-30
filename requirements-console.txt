@@ -1,0 +1,2 @@
+# Desktop shell. Install into .runtime/wechat-native/.venv only.
+pywebview==6.1

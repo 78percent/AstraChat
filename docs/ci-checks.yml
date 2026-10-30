@@ -1,0 +1,31 @@
+name: Source checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  python:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install regex==2026.9.29 ruff==0.17.3
+      - run: python -X utf8 -m unittest discover -s tests -v
+      - run: ruff check scripts plugins tests
+      - run: python -X utf8 scripts/check_release.py
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: console-ui
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: console-ui/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run build

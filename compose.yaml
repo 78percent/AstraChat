@@ -1,0 +1,64 @@
+name: astrbot-roleplay
+
+services:
+  astrbot:
+    image: astrbot-roleplay-astrbot:4.29.1-gate1
+    build:
+      context: .
+      dockerfile: Dockerfile.astrbot
+    platform: linux/amd64
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      TZ: Asia/Shanghai
+    env_file:
+      - ./runtime/astrbot.env
+    ports:
+      - "127.0.0.1:6185:6185"
+      - "127.0.0.1:6198:6198"
+    expose:
+      - "6199"
+    volumes:
+      - ./runtime/astrbot:/AstrBot/data
+      - ./runtime/roleplay:/AstrBot/data/roleplay
+      - ./plugins/astrbot_plugin_roleplay_gateway:/AstrBot/data/plugins/astrbot_plugin_roleplay_gateway:ro
+    networks:
+      - bot
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  napcat:
+    image: mlikiowa/napcat-docker:v4.18.41@sha256:b101b8968cc31ae428ec0f8e117386e4ced7773b2d8226ed9f7ddfcec55f1b7e
+    platform: linux/amd64
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Shanghai
+      MODE: reverse_ws
+      ONEBOT_URL: ws://astrbot:6199/ws
+      NAPCAT_UID: "1000"
+      NAPCAT_GID: "1000"
+    env_file:
+      - ./runtime/napcat.env
+    ports:
+      - "127.0.0.1:6099:6099"
+    volumes:
+      - ./runtime/napcat/qq:/app/.config/QQ
+      - ./runtime/napcat/config:/app/napcat/config
+      - ./runtime/napcat/plugins:/app/napcat/plugins
+    depends_on:
+      - astrbot
+    networks:
+      - bot
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  bot:
+    driver: bridge

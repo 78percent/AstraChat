@@ -1,0 +1,18 @@
+{
+  "qq": {
+    "bot_account_id": "10000001",
+    "admin_account_ids": [
+      "10000002"
+    ],
+    "private_contact_allowlist": [
+      "10000002"
+    ],
+    "test_group_ids": [
+      "10000003"
+    ]
+  },
+  "persona": {
+    "source_file": "personas/example.txt",
+    "sha256": "516f14391dd68abbcf845aa6c8e10b5df8f73ca488bb8e12691b00b065f08d9e"
+  }
+}

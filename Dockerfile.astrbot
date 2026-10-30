@@ -1,0 +1,8 @@
+FROM soulter/astrbot:v4.29.1@sha256:a140a326163ac5f82f62153f033cddeac74e38e4ee1809c6e333e950ff19edc4
+
+# Only the interruptible regex dependency is added to the pinned upstream image.
+COPY requirements-runtime.txt /tmp/roleplay-requirements.txt
+RUN python -m pip install --no-cache-dir --require-hashes -r /tmp/roleplay-requirements.txt
+
+LABEL org.opencontainers.image.base.name="soulter/astrbot:v4.29.1" \
+      org.opencontainers.image.base.digest="sha256:a140a326163ac5f82f62153f033cddeac74e38e4ee1809c6e333e950ff19edc4"
